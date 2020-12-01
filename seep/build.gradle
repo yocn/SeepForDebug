@@ -37,7 +37,7 @@ publish {
     artifactId = 'seep'//项目名称
     publishVersion = '1.0.0.alpha'//版本号
     desc = 'Oh hi, this is a nice description for a project, right?'//描述，不重要
-    website = 'https://github.com/yocn'//网站，不重要；尽量模拟github上的地址，例如我这样的；当然你有地址最好了
+    website = 'https://github.com/yocn/SeepForDebug'//网站，不重要；尽量模拟github上的地址，例如我这样的；当然你有地址最好了
 }
 
 //1. 新项目用的是gradle tools 6.0.1，貌似不支持，修改成gradle-5.4.1-all.zip 对应的com.android.tools.build:gradle:3.5.2

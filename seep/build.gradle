@@ -1,0 +1,47 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'//添加
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+//8fe2cd3386f41696f66bb09ff7883993f60cee84
+//8fe2cd3386f41696f66bb09ff7883993f60cee84
+
+/**
+ * ./gradlew clean build bintrayUpload -PbintrayUser=zhaoyocn -PbintrayKey=8fe2cd3386f41696f66bb09ff7883993f60cee84 -PdryRun=false
+ */
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+}
+
+publish {
+    userOrg = 'zhaoyocn'//bintray.com用户名
+    groupId = 'com.yocn'//jcenter上的路径
+    artifactId = 'seep'//项目名称
+    publishVersion = '1.0.0.alpha'//版本号
+    desc = 'Oh hi, this is a nice description for a project, right?'//描述，不重要
+    website = 'https://github.com/yocn'//网站，不重要；尽量模拟github上的地址，例如我这样的；当然你有地址最好了
+}
+
+//1. 新项目用的是gradle tools 6.0.1，貌似不支持，修改成gradle-5.4.1-all.zip 对应的com.android.tools.build:gradle:3.5.2
+/**
+ Execution failed for task ':bintrayPublish'.
+ > Could not publish 'zhaoyocn/maven/seep/1.0.0.alpha': HTTP/1.1 401 Unauthorized [message:This resource requires authentication]
+*/

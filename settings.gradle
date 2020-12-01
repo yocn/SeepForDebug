@@ -1,0 +1,3 @@
+include ':seep'
+include ':app'
+rootProject.name = "DumpAnalysis"

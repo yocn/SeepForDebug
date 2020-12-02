@@ -1,5 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.yocn.seep">
 
-    /
+    <application>
+        <activity
+            android:name=".net.NetGrabberActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+    </application>
 </manifest>

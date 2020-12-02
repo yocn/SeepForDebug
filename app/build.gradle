@@ -27,3 +27,5 @@ dependencies {
     implementation project(':seep')
     implementation 'androidx.appcompat:appcompat:1.2.0'
 }
+
+apply plugin: 'android-aspectjx'

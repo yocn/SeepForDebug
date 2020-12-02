@@ -3,9 +3,13 @@ package com.yocn.dumpanalysis;
 import android.Manifest;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.yocn.seep.DumpUtil;
+import com.yocn.seep.ui.util.SeepLogger;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_dump).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DumpUtil.createDumpFile(MainActivity.this);
+//                DumpUtil.createDumpFile(MainActivity.this);
+                onBackPressed();
             }
         });
     }
@@ -32,4 +37,16 @@ public class MainActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
+    @Override
+    public void onBackPressed() {
+        SeepLogger.d("onBackPressed");
+        Log.d("yocn","onBackPressed");
+//        super.onBackPressed();
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        SeepLogger.d("dispatchKeyEvent");
+        return super.dispatchTouchEvent(ev);
+    }
 }

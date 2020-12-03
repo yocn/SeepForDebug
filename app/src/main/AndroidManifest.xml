@@ -28,7 +28,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.yocn.dumpanalysis.MainActivity2"
+            android:name="com.yocn.dumpanalysis.SimpleFragmentActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
 
@@ -42,10 +42,10 @@
             </intent-filter>
         </activity>
 
-        <meta-data android:name="SEEP_UI_ENTRANCE" android:value="com.yocn.dumpanalysis.MainActivity"/>
-        <meta-data android:name="SEEP_UI_BACK" android:value="com.yocn.dumpanalysis.MainActivity"/>
-        <meta-data android:name="SEEP_NET_GET" android:value="com.yocn.dumpanalysis.MainActivity.get"/>
-        <meta-data android:name="SEEP_NET_POST" android:value="com.yocn.dumpanalysis.MainActivity.post1"/>
+        <meta-data android:name="SEEP_UI_ENTRANCE" android:value="com.yocn.dumpanalysis.BaseActivity"/>
+        <meta-data android:name="SEEP_UI_BACK" android:value="com.yocn.dumpanalysis.BaseActivity"/>
+        <meta-data android:name="SEEP_NET_GET" android:value="com.yocn.dumpanalysis.BaseActivity.get"/>
+        <meta-data android:name="SEEP_NET_POST" android:value="com.yocn.dumpanalysis.BaseActivity.post"/>
 
     </application>
 

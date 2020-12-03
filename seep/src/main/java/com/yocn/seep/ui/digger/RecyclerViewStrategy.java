@@ -12,7 +12,15 @@ import java.util.List;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+/**
+ * TODO: 怎样能得到viewHolder对应的数据？
+ * 设置自动获取或者给一个策略，如果设置了策略就按照策越获取，否则自动获取，让用户选择
+ * 1、反射获取adapter里面所有的list，让用户选择
+ * 2、没有list，用viewModel之类的获取怎么整？？？用户可以自己配置策略？
+ * @param <T>
+ */
 public class RecyclerViewStrategy<T extends RecyclerView> implements ComponentStrategy<T> {
+
     @Override
     public SeepResult getComponent(T recyclerview) {
         SeepResult seepResult = new SeepResult();

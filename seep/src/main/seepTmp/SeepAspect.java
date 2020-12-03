@@ -1,11 +1,10 @@
-package com.mxtech.videoplayer.ad.seep;
-
+package com.yocn.seep;
 
 import android.view.MotionEvent;
 
-import com.mxplay.logger.ZenLogger;
-import com.mxtech.videoplayer.ad.seep.net.NetGrabber;
-import com.mxtech.videoplayer.ad.seep.net.bean.NetResult;
+import com.yocn.seep.net.NetGrabber;
+import com.yocn.seep.net.bean.NetResult;
+import com.yocn.seep.ui.util.SeepLogger;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -18,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class SeepAspect {
     String TAG = "Seep";
 
-    @Around("execution(* com.mxtech.app.MXAppCompatActivityMultiLanguageBase.dispatchTouchEvent(..))")
+    @Around("execution(* [placeholderUIEntrance].dispatchTouchEvent(..))")
     public Object dispatchTouchEvent(ProceedingJoinPoint joinPoint) throws Throwable {
         Object[] parameterValues = joinPoint.getArgs();
         MotionEvent motionEvent = (MotionEvent) parameterValues[0];
@@ -29,8 +28,7 @@ public class SeepAspect {
         return joinPoint.proceed();
     }
 
-
-    @Around("execution(* com.mxtech.app.MXAppCompatActivityMultiLanguageBase.onBackPressed())")
+    @Around("execution(* [placeholderBack].onBackPressed())")
     public Object onBackPressed(ProceedingJoinPoint joinPoint) throws Throwable {
         if (Seep.handleBackPressed()) {
             return true;
@@ -38,30 +36,30 @@ public class SeepAspect {
         return joinPoint.proceed();
     }
 
-    @Around("execution(* com.mxtech.videoplayer.ad.online.apiclient.APIUtil.get(..))")
+    @Around("execution(* [placeholderGet](..))")
     public Object get(ProceedingJoinPoint joinPoint) throws Throwable {
         Object[] parameterValues = joinPoint.getArgs();
         Object o = joinPoint.proceed();
         if (parameterValues != null && parameterValues.length > 0) {
             Object url = parameterValues[0];
-            ZenLogger.dt(Seep.TAG, "get  url: %s ", parameterValues[0]);
+            SeepLogger.dt(Seep.TAG, "get  url:  " + parameterValues[0]);
             NetGrabber.getInstance().grabNet(new NetResult(url.toString(), o, new DateTime()));
         } else {
-            ZenLogger.dt(Seep.TAG, "get  null:%s", o);
+            SeepLogger.dt(Seep.TAG, "get  null:" + o);
         }
         return o;
     }
 
-    @Around("execution(* com.mxtech.videoplayer.ad.online.apiclient.APIUtil.post(..))")
+    @Around("execution(* [placeholderPost](..))")
     public Object post(ProceedingJoinPoint joinPoint) throws Throwable {
         Object[] parameterValues = joinPoint.getArgs();
         Object o = joinPoint.proceed();
         if (parameterValues != null && parameterValues.length > 0) {
             Object url = parameterValues[0];
-            ZenLogger.dt(Seep.TAG, "post  url:%s ", parameterValues[0]);
+            SeepLogger.dt(Seep.TAG, "post  url " + parameterValues[0]);
             NetGrabber.getInstance().grabNet(new NetResult(url.toString(), o, new DateTime()));
         } else {
-            ZenLogger.dt(Seep.TAG, "post  null:%s", o);
+            SeepLogger.dt(Seep.TAG, "post  null:" + o);
         }
         return o;
     }

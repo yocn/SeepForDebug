@@ -3,18 +3,13 @@ package com.yocn.dumpanalysis;
 import android.Manifest;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
-
-import com.yocn.seep.DumpUtil;
-import com.yocn.seep.ui.util.SeepLogger;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity2 extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

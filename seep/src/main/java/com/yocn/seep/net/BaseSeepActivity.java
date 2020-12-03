@@ -46,7 +46,6 @@ public abstract class BaseSeepActivity extends AppCompatActivity {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_back);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        // 减小Title与导航键的间距
         toolbar.setContentInsetStartWithNavigation(0);
     }
 

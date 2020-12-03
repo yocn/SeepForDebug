@@ -23,4 +23,15 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
+
+    <style name="ToolbarBase" parent="Widget.AppCompat.Toolbar" />
+
+    <style name="seepToolBarStyle" parent="ToolbarBase">
+        <item name="android:homeAsUpIndicator">@drawable/ic_back</item>
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
+    <attr name="seepToolBarStyle" format="reference" />
+
 </resources>

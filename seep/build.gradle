@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'//添加
+apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 29
@@ -27,17 +27,12 @@ android {
     }
 }
 
-apply plugin: 'android-aspectjx'
-
-aspectjx {
-    exclude 'androidx', 'com.google', 'org.apache', 'leakcanary', 'com.squareup', 'com.appsflyer', 'kotlin'
+if (getGradle().getStartParameter().getTaskRequests().toString().contains("assemble")) {
+    processConfig()
 }
 
-//731da39abf598aa7407196671aa034ca9465f640
+apply plugin: 'android-aspectjx'
 
-/**
- * ./gradlew clean build bintrayUpload -PbintrayUser=yocn -PbintrayKey=731da39abf598aa7407196671aa034ca9465f640 -PdryRun=false
- */
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
@@ -55,17 +50,103 @@ publish {
     website = 'https://github.com/yocn/SeepForDebug'//网站，不重要；尽量模拟github上的地址，例如我这样的；当然你有地址最好了
 }
 
-/**
- * 需要新建一个resp名字为maven。
- * 1.
- * Unable to load class ‘org.gradle.api.internal.component.Usage’.
- * No such property: FOR_RUNTIME for class: org.gradle.api.attributes.Usage
- * 新项目用的是gradle tools 6.0.1，貌似不支持，修改成gradle-5.4.1-all.zip 对应的com.android.tools.build:gradle:3.5.2
- * 2.
- Execution failed for task ':bintrayPublish'.
- > Could not publish 'zhaoyocn/maven/seep/1.0.0.alpha': HTTP/1.1 401 Unauthorized [message:This resource requires authentication]
- 用户名写错了 | 没有上传git
- 3.
- Could not publish 'zhaoyocn/maven/seep/1.0.0.alpha': HTTP/1.1 404 Not Found [message:Repo 'maven' was not found]
+def processConfig() {
+    def manifest = new XmlParser().parse(new File("app/src/main/AndroidManifest.xml"))
+    getMainActivityTask(manifest)
+    modifyAspectClass(manifest)
+}
 
- */
+def modifyAspectClass(Node manifest) {
+    def srcSeepPath = rootProject.rootDir.path + "/seep/src/main/seepTmp/SeepAspect.java"
+    def tarSeepPath = rootProject.rootDir.path + "/seep/src/main/java/com/yocn/seep/SeepAspect.java"
+    def entrance
+    def back
+    def get
+    def post
+    manifest.each { Node node ->
+        if (node.name() == "application") {
+            node.each { Node child ->
+                if (child.name() == "meta-data") {
+                    def attr1 = child.attributes().values().toList().get(0)
+                    def attr2 = child.attributes().values().toList().get(1)
+                    def entranceTmp = getValue("SEEP_UI_ENTRANCE", attr1, attr2)
+                    def backTmp = getValue("SEEP_UI_BACK", attr1, attr2)
+                    def getTmp = getValue("SEEP_NET_GET", attr1, attr2)
+                    def postRmp = getValue("SEEP_NET_POST", attr1, attr2)
+                    if (entranceTmp != null) {
+                        entrance = entranceTmp
+                    } else if (backTmp != null) {
+                        back = backTmp
+                    } else if (getTmp != null) {
+                        get = getTmp
+                    } else if (postRmp != null) {
+                        post = postRmp
+                    }
+                }
+            }
+        }
+    }
+    def list = []
+    new File(srcSeepPath).withReader('UTF-8') { reader ->
+        reader.eachLine {
+            println it
+            if (it.contains('[placeholderUIEntrance]')) {
+                it = it.replace("[placeholderUIEntrance]", entrance)
+            } else if (it.contains('[placeholderBack]')) {
+                it = it.replace('[placeholderBack]', back)
+            } else if (it.contains('[placeholderGet]')) {
+                it = it.replace('[placeholderGet]', get)
+            } else if (it.contains('[placeholderPost]')) {
+                it = it.replace('[placeholderPost]', post)
+            }
+            list.add(it + "\n")
+        }
+    }
+    new File(tarSeepPath).withWriter('UTF-8') { writer ->
+        list.each {
+            println it
+            writer.write(it)
+        }
+    }
+}
+
+def getValue(String target, String s1, String s2) {
+    if (s1 == target) {
+        return s2
+    }
+    if (s2 == target) {
+        return s1
+    }
+}
+
+def getMainActivityTask(Node manifest) {
+    def packageName = manifest.attributes().get("package")
+    def activityName
+    // 找到application节点
+    def applicationNodeList = manifest.get("application").asType(NodeList.class)
+
+    // 找到所有的activity节点
+    def activityNodeList = applicationNodeList.getAt("activity")
+    activityNodeList.each { activityNode ->
+        def intentFilterList = activityNode.getAt("intent-filter")
+        if (intentFilterList != null) {
+            for (int i = 0; i < intentFilterList.size(); i++) {
+                def intentFilter = intentFilterList.get(i)
+                def actionList = intentFilter.getAt("action")
+                def categoryList = intentFilter.getAt("category")
+                if (actionList.toString().contains("android.intent.action.MAIN")
+                        && categoryList.toString().contains("android.intent.category.LAUNCHER")) {
+                    activityNode.attributes().each { attr ->
+                        if (attr.toString().contains("name=")) {
+                            activityName = attr.toString().substring(attr.toString().lastIndexOf("."), attr.toString().length())
+                        }
+                    }
+                    break
+                }
+            }
+        }
+    }
+
+    println "packageName::::::::" + packageName + activityName
+    return packageName + activityName
+}

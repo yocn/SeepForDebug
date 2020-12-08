@@ -1,4 +1,6 @@
-package com.yocn.dumpanalysis;
+package com.yocn.dumpanalysis.util;
+
+import com.yocn.dumpanalysis.R;
 
 /**
  * @author yocn

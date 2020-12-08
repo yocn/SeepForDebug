@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -28,7 +28,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.yocn.dumpanalysis.SimpleFragmentActivity"
+            android:name="com.yocn.dumpanalysis.activity.SimpleFragmentActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
 
@@ -41,11 +41,17 @@
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.yocn.dumpanalysis.activity.TabFragmentActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
 
-        <meta-data android:name="SEEP_UI_ENTRANCE" android:value="com.yocn.dumpanalysis.BaseActivity"/>
-        <meta-data android:name="SEEP_UI_BACK" android:value="com.yocn.dumpanalysis.BaseActivity"/>
-        <meta-data android:name="SEEP_NET_GET" android:value="com.yocn.dumpanalysis.BaseActivity.get"/>
-        <meta-data android:name="SEEP_NET_POST" android:value="com.yocn.dumpanalysis.BaseActivity.post"/>
+        </activity>
+
+        <meta-data android:name="SEEP_UI_ENTRANCE" android:value="com.yocn.dumpanalysis.activity.BaseActivity"/>
+        <meta-data android:name="SEEP_UI_BACK" android:value="com.yocn.dumpanalysis.activity.BaseActivity"/>
+        <meta-data android:name="SEEP_NET_GET" android:value="com.yocn.dumpanalysis.activity.BaseActivity.get"/>
+        <meta-data android:name="SEEP_NET_POST" android:value="com.yocn.dumpanalysis.activity.BaseActivity.post"/>
 
     </application>
 

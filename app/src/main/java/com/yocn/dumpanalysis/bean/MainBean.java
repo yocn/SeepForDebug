@@ -1,8 +1,6 @@
 package com.yocn.dumpanalysis.bean;
 
-import android.app.Activity;
-
-import com.yocn.dumpanalysis.BaseActivity;
+import com.yocn.dumpanalysis.activity.BaseActivity;
 
 public class MainBean {
     private String name;

@@ -89,7 +89,7 @@ def modifyAspectClass(Node manifest) {
     def list = []
     new File(srcSeepPath).withReader('UTF-8') { reader ->
         reader.eachLine {
-            println it
+//            println it
             if (it.contains('[placeholderUIEntrance]')) {
                 it = it.replace("[placeholderUIEntrance]", entrance)
             } else if (it.contains('[placeholderBack]')) {
@@ -104,7 +104,7 @@ def modifyAspectClass(Node manifest) {
     }
     new File(tarSeepPath).withWriter('UTF-8') { writer ->
         list.each {
-            println it
+//            println it
             writer.write(it)
         }
     }

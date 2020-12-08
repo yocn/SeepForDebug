@@ -7,6 +7,7 @@ import com.yocn.seep.ui.bean.SeepResult;
 import com.yocn.seep.ui.digger.SeepComponentDigger;
 import com.yocn.seep.ui.util.ViewUtil;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,6 +49,7 @@ public class RecyclerViewStrategy<T extends RecyclerView> implements ComponentSt
                     if (view != null) {
                         RecyclerView.ViewHolder viewHolder = recyclerview.getChildViewHolder(view);
                         SeepResult viewHolderSeepResult = SeepComponentDigger.getComponents(viewHolder);
+                        viewHolderSeepResult.setWeakReference(new WeakReference<>(view));
                         if (dataList != null && i < dataList.size()) {
                             Object data = dataList.get(i);
                             viewHolderSeepResult.setData(data);

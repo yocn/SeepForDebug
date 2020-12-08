@@ -1,4 +1,4 @@
-package com.yocn.dumpanalysis;
+package com.yocn.dumpanalysis.activity;
 
 import android.os.Bundle;
 import android.view.MotionEvent;

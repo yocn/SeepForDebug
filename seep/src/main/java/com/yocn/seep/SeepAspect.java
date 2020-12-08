@@ -17,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class SeepAspect {
     String TAG = "Seep";
 
-    @Around("execution(* com.yocn.dumpanalysis.BaseActivity.dispatchTouchEvent(..))")
+    @Around("execution(* com.yocn.dumpanalysis.activity.BaseActivity.dispatchTouchEvent(..))")
     public Object dispatchTouchEvent(ProceedingJoinPoint joinPoint) throws Throwable {
         Object[] parameterValues = joinPoint.getArgs();
         MotionEvent motionEvent = (MotionEvent) parameterValues[0];
@@ -28,7 +28,7 @@ public class SeepAspect {
         return joinPoint.proceed();
     }
 
-    @Around("execution(* com.yocn.dumpanalysis.BaseActivity.onBackPressed())")
+    @Around("execution(* com.yocn.dumpanalysis.activity.BaseActivity.onBackPressed())")
     public Object onBackPressed(ProceedingJoinPoint joinPoint) throws Throwable {
         if (Seep.handleBackPressed()) {
             return true;
@@ -36,7 +36,7 @@ public class SeepAspect {
         return joinPoint.proceed();
     }
 
-    @Around("execution(* com.yocn.dumpanalysis.BaseActivity.get(..))")
+    @Around("execution(* com.yocn.dumpanalysis.activity.BaseActivity.get(..))")
     public Object get(ProceedingJoinPoint joinPoint) throws Throwable {
         Object[] parameterValues = joinPoint.getArgs();
         Object o = joinPoint.proceed();
@@ -50,7 +50,7 @@ public class SeepAspect {
         return o;
     }
 
-    @Around("execution(* com.yocn.dumpanalysis.BaseActivity.post(..))")
+    @Around("execution(* com.yocn.dumpanalysis.activity.BaseActivity.post(..))")
     public Object post(ProceedingJoinPoint joinPoint) throws Throwable {
         Object[] parameterValues = joinPoint.getArgs();
         Object o = joinPoint.proceed();

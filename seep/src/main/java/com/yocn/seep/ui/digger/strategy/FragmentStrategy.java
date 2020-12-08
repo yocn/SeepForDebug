@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import com.yocn.seep.ui.bean.SeepResult;
 import com.yocn.seep.ui.util.ViewUtil;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +34,7 @@ public class FragmentStrategy<T extends Fragment> implements ComponentStrategy<T
                 seepResult.setName(fragment.getClass().getSimpleName());
                 RectF rectf = ViewUtil.getViewBounds(fragmentRootView);
                 seepResult.setRectF(rectf);
+                seepResult.setWeakReference(new WeakReference<>(fragment));
                 List<Fragment> fragmentList = fragment.getChildFragmentManager().getFragments();
                 if (fragmentRootView instanceof ViewGroup) {
                     seepResult.setChild(ViewUtil.getChildSeepList((ViewGroup) fragmentRootView, fragmentList));

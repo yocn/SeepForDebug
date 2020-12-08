@@ -55,6 +55,9 @@ public class UISeepManager {
     private BottomListDialog.OnDialogInterface onDialogInterface = new BottomListDialog.OnDialogInterface() {
         @Override
         public void clickSeepResult(SeepResult seepResult) {
+            if (seepResult.getWeakReference() == null) {
+                throw new RuntimeException("can't get target object");
+            }
             SeepResult target = SeepComponentDigger.getComponents(seepResult.getWeakReference().get());
             showDialog(weakReference.get(), target);
         }

@@ -14,9 +14,9 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/seepColorPrimary</item>
+        <item name="colorPrimaryDark">@color/seepPrimaryDark</item>
+        <item name="colorAccent">@color/seepAccent</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -29,7 +29,7 @@
 
     <style name="seepToolBarStyle" parent="ToolbarBase">
         <item name="android:homeAsUpIndicator">@drawable/ic_back</item>
-        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:background">@color/seepColorPrimary</item>
     </style>
 
     <attr name="seepToolBarStyle" format="reference" />

@@ -4,24 +4,31 @@ import android.graphics.RectF;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.StringDef;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class SeepResult {
     @StringDef({SeepType.TYPE_ACTIVITY,
             SeepType.TYPE_FRAGMENT,
             SeepType.TYPE_RECYCLERVIEW,
-            SeepType.TYPE_VIEW_HOLDER})
+            SeepType.TYPE_VIEW_HOLDER,
+            SeepType.TYPE_VIEW_GROUP,
+            SeepType.TYPE_VIEW})
     @Retention(RetentionPolicy.SOURCE)
     public @interface SeepType {
         String TYPE_ACTIVITY = "activity";
         String TYPE_FRAGMENT = "fragment";
         String TYPE_RECYCLERVIEW = "recyclerView";
         String TYPE_VIEW_HOLDER = "viewHolder";
+        String TYPE_VIEW_GROUP = "viewGroup";
+        String TYPE_VIEW = "view";
     }
 
+    private WeakReference<Object> weakReference;
     private String name = "";
     private String type = "";
     private RectF rectF;
@@ -29,6 +36,14 @@ public class SeepResult {
     private List<SeepResult> child = new ArrayList<>();
 
     public SeepResult() {
+    }
+
+    public WeakReference<Object> getWeakReference() {
+        return weakReference;
+    }
+
+    public void setWeakReference(WeakReference<Object> weakReference) {
+        this.weakReference = weakReference;
     }
 
     public List<SeepResult> getChild() {

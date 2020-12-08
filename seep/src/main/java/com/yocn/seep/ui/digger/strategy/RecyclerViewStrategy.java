@@ -1,9 +1,10 @@
-package com.yocn.seep.ui.digger;
+package com.yocn.seep.ui.digger.strategy;
 
 import android.graphics.RectF;
 import android.view.View;
 
 import com.yocn.seep.ui.bean.SeepResult;
+import com.yocn.seep.ui.digger.SeepComponentDigger;
 import com.yocn.seep.ui.util.ViewUtil;
 
 import java.util.ArrayList;

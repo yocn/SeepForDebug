@@ -3,6 +3,7 @@ package com.yocn.seep.ui;
 import android.view.ViewGroup;
 
 import com.yocn.seep.ui.bean.SeepResult;
+import com.yocn.seep.ui.digger.SeepComponentDigger;
 import com.yocn.seep.ui.view.BottomListDialog;
 import com.yocn.seep.ui.view.MaskViewGroup;
 
@@ -54,7 +55,8 @@ public class UISeepManager {
     private BottomListDialog.OnDialogInterface onDialogInterface = new BottomListDialog.OnDialogInterface() {
         @Override
         public void clickSeepResult(SeepResult seepResult) {
-            showDialog(weakReference.get(), seepResult);
+            SeepResult target = SeepComponentDigger.getComponents(seepResult.getWeakReference().get());
+            showDialog(weakReference.get(), target);
         }
 
         @Override

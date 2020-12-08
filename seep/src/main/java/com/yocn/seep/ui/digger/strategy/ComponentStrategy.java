@@ -1,4 +1,4 @@
-package com.yocn.seep.ui.digger;
+package com.yocn.seep.ui.digger.strategy;
 
 import com.yocn.seep.ui.bean.SeepResult;
 

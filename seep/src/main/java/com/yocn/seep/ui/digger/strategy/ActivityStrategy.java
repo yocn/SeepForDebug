@@ -24,8 +24,7 @@ public class ActivityStrategy<T extends AppCompatActivity> implements ComponentS
         RectF activityRectF = ViewUtil.getViewBounds(activityRootView);
         seepResult.setRectF(activityRectF);
         List<Fragment> fragmentList = activity.getSupportFragmentManager().getFragments();
-
-        seepResult.setChild(TypeUtil.getChildSeepList(activityRootView, fragmentList));
+        seepResult.setChild(ViewUtil.getChildSeepList(activityRootView, fragmentList));
         return seepResult;
     }
 }

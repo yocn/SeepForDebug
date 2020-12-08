@@ -9,15 +9,20 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="@dimen/dp10">
+        android:layout_marginRight="@dimen/dp10"
+        android:background="@drawable/bg_half_round_corner"
+        android:padding="@dimen/dp10">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_close"
             android:layout_width="@dimen/dp20"
             android:layout_height="@dimen/dp20"
             android:layout_alignEnd="@id/tv_net_grabber"
+            android:layout_alignRight="@id/tv_net_grabber"
             android:layout_marginEnd="@dimen/dp5"
+            android:layout_marginRight="@dimen/dp5"
             android:layout_marginBottom="@dimen/dp5"
             android:src="@drawable/ic_close" />
 
@@ -30,7 +35,7 @@
             android:foreground="?android:attr/selectableItemBackground"
             android:gravity="center"
             android:text="UI"
-            android:textColor="@color/white"
+            android:textColor="@color/seepWhite"
             android:textSize="18sp" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -43,7 +48,7 @@
             android:foreground="?android:attr/selectableItemBackground"
             android:gravity="center"
             android:text="NET"
-            android:textColor="@color/white"
+            android:textColor="@color/seepWhite"
             android:textSize="18sp" />
 
     </RelativeLayout>

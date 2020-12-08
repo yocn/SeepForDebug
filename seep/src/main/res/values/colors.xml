@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#1467CD</color>
-    <color name="colorPrimaryDark">@color/colorPrimary</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="seepColorPrimary">#1467CD</color>
+    <color name="seepPrimaryDark">@color/seepColorPrimary</color>
+    <color name="seepAccent">#FF4081</color>
+    <color name="seepHalf">#3a000000</color>
+    <color name="seepWhite">#ffffff</color>
+    <color name="seepBlack">#000000</color>
+    <color name="seepGray">#666666</color>
 
-    <color name="black">@android:color/black</color>
-    <color name="darker_gray">@android:color/darker_gray</color>
-    <color name="white">@android:color/white</color>
-    <color name="transparent_white">#66ffffff</color>
-    <color name="transparent_start_white">#33ffffff</color>
-    <color name="transparent_end_white">#19ffffff</color>
 </resources>

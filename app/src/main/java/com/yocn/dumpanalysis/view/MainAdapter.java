@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.yocn.dumpanalysis.ColorUtil;
 import com.yocn.dumpanalysis.R;
 import com.yocn.dumpanalysis.bean.MainBean;
 
@@ -18,14 +19,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
     private List<MainBean> list;
     private Context context;
-    private int[] colors = {R.color.color1, R.color.color2, R.color.color3
-            , R.color.color4, R.color.color5, R.color.color6
-            , R.color.color7, R.color.color8, R.color.color9};
-
-    private int[] textColor = {R.color.write, R.color.black, R.color.write
-            , R.color.black, R.color.black, R.color.black
-            , R.color.write, R.color.black, R.color.write};
-
     static class ViewHolder extends RecyclerView.ViewHolder {
         View root;
         TextView name;
@@ -53,8 +46,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         MainBean bean = list.get(position);
         holder.name.setText(bean.getName());
-        holder.name.setTextColor(context.getResources().getColor(textColor[position % textColor.length]));
-        holder.root.setBackgroundResource(colors[position% colors.length]);
+        holder.name.setTextColor(context.getResources().getColor(ColorUtil.textColor[position % ColorUtil.textColor.length]));
+        holder.root.setBackgroundResource(ColorUtil.colors[position% ColorUtil.colors.length]);
         holder.name.setOnClickListener(v -> context.startActivity(new Intent(context, bean.getTarget())));
 
     }

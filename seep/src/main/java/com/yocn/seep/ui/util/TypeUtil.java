@@ -17,35 +17,6 @@ import androidx.fragment.app.Fragment;
  */
 public class TypeUtil {
 
-    public static List<SeepResult> getChildSeepList(ViewGroup viewGroup, List<Fragment> fragmentList) {
-        List<SeepResult> seepResultList = new ArrayList<>();
-        for (int i = 0; i < viewGroup.getChildCount(); i++) {
-            View view = viewGroup.getChildAt(i);
-            RectF childRectF = ViewUtil.getViewBounds(view);
-            SeepResult childSeepResult = new SeepResult();
-            Fragment fragment = null;
-            if (TypeUtil.isRecyclerView(view)) {
-                childSeepResult.setType(SeepResult.SeepType.TYPE_RECYCLERVIEW);
-                childSeepResult.setName(view.getClass().getSimpleName());
-                childSeepResult.setRectF(childRectF);
-                childSeepResult.setWeakReference(new WeakReference<>(view));
-            } else if ((fragment = TypeUtil.isFragment(view, fragmentList)) != null) {
-                childSeepResult.setType(SeepResult.SeepType.TYPE_FRAGMENT);
-                childSeepResult.setName(fragment.getClass().getSimpleName());
-                childSeepResult.setRectF(childRectF);
-                childSeepResult.setWeakReference(new WeakReference<>(fragment));
-            } else {
-                childSeepResult.setType(SeepResult.SeepType.TYPE_VIEW);
-                childSeepResult.setName(view.getClass().getSimpleName());
-                childSeepResult.setRectF(childRectF);
-                childSeepResult.setWeakReference(new WeakReference<>(view));
-            }
-            SeepLogger.d("fragment::" + fragment);
-            seepResultList.add(childSeepResult);
-        }
-        return seepResultList;
-    }
-
     public static boolean isRecyclerView(View view) {
         return view.getClass().toString().contains("RecyclerView");
     }

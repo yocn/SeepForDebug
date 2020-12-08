@@ -4,12 +4,45 @@ import android.graphics.RectF;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.yocn.seep.ui.bean.SeepResult;
+
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class ViewUtil {
+
+    public static List<SeepResult> getChildSeepList(ViewGroup viewGroup, List<Fragment> fragmentList) {
+        List<SeepResult> seepResultList = new ArrayList<>();
+        for (int i = 0; i < viewGroup.getChildCount(); i++) {
+            View view = viewGroup.getChildAt(i);
+            RectF childRectF = ViewUtil.getViewBounds(view);
+            SeepResult childSeepResult = new SeepResult();
+            Fragment fragment = null;
+            if (TypeUtil.isRecyclerView(view)) {
+                childSeepResult.setType(SeepResult.SeepType.TYPE_RECYCLERVIEW);
+                childSeepResult.setName(view.getClass().getSimpleName());
+                childSeepResult.setRectF(childRectF);
+                childSeepResult.setWeakReference(new WeakReference<>(view));
+            } else if ((fragment = TypeUtil.isFragment(view, fragmentList)) != null) {
+                childSeepResult.setType(SeepResult.SeepType.TYPE_FRAGMENT);
+                childSeepResult.setName(fragment.getClass().getSimpleName());
+                childSeepResult.setRectF(childRectF);
+                childSeepResult.setWeakReference(new WeakReference<>(fragment));
+            } else {
+                childSeepResult.setType(SeepResult.SeepType.TYPE_VIEW);
+                childSeepResult.setName(view.getClass().getSimpleName());
+                childSeepResult.setRectF(childRectF);
+                childSeepResult.setWeakReference(new WeakReference<>(view));
+            }
+            SeepLogger.d("fragment::" + fragment);
+            seepResultList.add(childSeepResult);
+        }
+        return seepResultList;
+    }
 
     public static int getViewHierarchyMaxDeep(ViewGroup rootView) {
         return getDeep(rootView, 1);

@@ -22,6 +22,7 @@ public class MainActivity extends BaseActivity {
         List<MainBean> list = new ArrayList<>();
         list.add(new MainBean("SimpleFragmentActivity", SimpleFragmentActivity.class));
         list.add(new MainBean("TabFragmentActivity", TabFragmentActivity.class));
+        list.add(new MainBean("KotlinActivity", KotlinActivity.class));
         MainAdapter mainAdapter = new MainAdapter(this, list);
         recyclerView.setAdapter(mainAdapter);
         int spanCount = 2;

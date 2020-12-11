@@ -1,4 +1,7 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
 
 android {
     compileSdkVersion 28
@@ -31,6 +34,9 @@ dependencies {
     implementation project(':seep')
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.3.72'
+    implementation 'org.jetbrains.anko:anko-sdk25:0.10.0-beta-1'// sdk15, sdk19, sdk21, sdk23 are also available
+    implementation 'org.jetbrains.anko:anko-appcompat-v7:0.10.0-beta-1'
 }
 
 apply plugin: 'android-aspectjx'

@@ -3,7 +3,8 @@
 很多时候我们接手一个项目的时候除了看遗留的文档看代码之外并没有什么好的方式，而且如果一个页面里面的组件是动态的，我们很难一次就能找到页面里面当前正在显示的组件到底是什么。
 这个时候我们其实期望能有一种方式能知道现在显示在屏幕上某个位置的组件到底是什么，或者更进一步假设这是个RecyclerView，我们想知道每个holder对应的显示的bean到底是什么。
 所以写了这么个工具，能让我们知道当前页面显示的是什么组件。
-![seep.gif](https://upload-images.jianshu.io/upload_images/6857764-7687134993b0eb49.gif?imageMogr2/auto-orient/strip)
+
+![seep_debug.gif](https://i.loli.net/2020/12/23/B1imevKaYjWLZoH.gif)
 
 三指在屏幕上长按超过一秒会调出入口。使用了沪江的[gradle-android-plugin-aspectjx](https://github.com/HujiangTechnology/gradle_plugin_android_aspectjx)来做切面。
 
